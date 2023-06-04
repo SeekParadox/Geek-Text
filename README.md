@@ -1,4 +1,4 @@
-# Geek Text (In progress)
+# Geek Text
 
 ## Description
 
@@ -36,11 +36,18 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 <!-- List your collaborators, if any, with links to their GitHub profiles. -->
 
+Jonathan Summers https://github.com/TheMozillaChrome
+
 David Ulloa https://github.com/DavidUlloa6310
 
 Sofia Villaverde https://github.com/Svill142
 
+Michael Waller https://github.com/SeekParadox
+
+Alex Wilson https://github.com/xzeroryuken
+
 Gabriel Wolf https://github.com/Warhound75
+
 
 
 <!-- If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section. -->
@@ -52,7 +59,7 @@ Gabriel Wolf https://github.com/Warhound75
 <!-- The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/). -->
 MIT License
 
-Copyright (c) 2023 Michael Waller, David Ulloa, Sofia Villaverde, Alexander Wilson, Gabriel Wolf, Isabella Zengotita
+Copyright (c) 2023 Michael Waller, David Ulloa, Sofia Villaverde, Alexander Wilson, Gabriel Wolf, Jonathan Summers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
