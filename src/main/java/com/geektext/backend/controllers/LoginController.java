@@ -6,11 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * This class is responsible for routes to the login page and registration page
- *
- * @author Michael Waller
- */
 @Controller
 public class LoginController {
     private final CreateUserService userService;
