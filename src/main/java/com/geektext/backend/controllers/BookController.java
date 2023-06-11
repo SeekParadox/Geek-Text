@@ -3,6 +3,8 @@ package com.geektext.backend.controllers;
 
 import com.geektext.backend.dao.Book;
 import com.geektext.backend.dao.BookRepository;
+import com.geektext.backend.service.BookService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +19,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/books")
+@CrossOrigin(origins = "*")
 public class BookController {
 
     private final BookRepository books;
+    private BookService bookService;
 
     /**
      * Default controller for the BookController class
@@ -38,6 +42,12 @@ public class BookController {
     public List<Book> books() {
         return books.findAll();
     }
+
+    @PostMapping
+    public Book addBook(@RequestBody Book book) {
+        return books.save(book);
+    }
+
 
     /**
      * This view displays all books by genre

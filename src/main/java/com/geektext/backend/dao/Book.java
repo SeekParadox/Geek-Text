@@ -12,26 +12,43 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @version 1.0.0
  */
 
-@Document("books")
+@Document(collection = "books")
 public class Book {
     @Id
     private String id;
     private final String name;
     private final String author;
-    @JsonIgnore
+    // @JsonIgnore
     private final String isbn;
     private final String description;
     private final String genre;
     private double cost;
-    @JsonIgnore
+    // @JsonIgnore
     private final double rating;
-    @JsonIgnore
+    // @JsonIgnore
     private final int sold;
-    @JsonIgnore
+    // @JsonIgnore
     private final String publisher;
+
+     public Book() {
+        this.name = null;
+        this.author = null;
+        this.isbn = null;
+        this.description = null;
+        this.genre = null;
+        this.rating= 0;
+        this.sold = 0;
+        this.publisher = null;
+
+        // Default constructor is required for JSON deserialization
+    }
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -54,7 +71,7 @@ public class Book {
         return genre;
     }
 
-    public double getRatings() {
+    public double getRating() {
         return rating;
     }
 
@@ -66,17 +83,26 @@ public class Book {
         return cost;
     }
 
-    public double getRating() {
-        return rating;
-    }
-
     public String getPublisher() {
         return publisher;
     }
 
     public void setCost(double cost) {
-        this.cost = cost;
+    this.cost = cost;
     }
+
+    public void setRating(double rating) {
+        throw new UnsupportedOperationException("Rating is a final field and cannot be modified.");
+    }
+
+    public void setSold(int sold) {
+        throw new UnsupportedOperationException("Sold is a final field and cannot be modified.");
+    }
+
+    public void setPublisher(String publisher) {
+        throw new UnsupportedOperationException("Publisher is a final field and cannot be modified.");
+    }
+
 
     /**
      * Default constructor for mapping MongoDB objects
