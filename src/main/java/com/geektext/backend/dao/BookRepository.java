@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Repository
 public interface BookRepository extends MongoRepository<Book, String> {
-
+    List<Book> findAll();
     /**
      * Returns a list of all books with the given name
      * @param name - name of the book(s)
@@ -53,4 +53,5 @@ public interface BookRepository extends MongoRepository<Book, String> {
      */
     List<Book> findAllByPublisherIgnoreCase(String name);
 
+    Book findByIsbn(String isbn);
 }

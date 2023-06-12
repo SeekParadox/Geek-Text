@@ -39,6 +39,11 @@ public class BookController {
         return books.findAll();
     }
 
+    @GetMapping("/{isbn}")
+    public Book getBookByIsbn(@PathVariable String isbn) {
+        return books.findByIsbn(isbn);
+    }
+
     /**
      * This view displays all books by genre
      *
