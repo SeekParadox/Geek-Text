@@ -1,25 +1,21 @@
 package com.geektext.backend.dao;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mongodb.lang.Nullable;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * This class is an Object Relation Mapping for a MongoDB documents
- *
- * @author Michael Waller
- * @version 1.0.0
+ * This class is an Object Relation Mapping for a MongoDB document
+ * Represents a book entity.
  */
-
 @Document("books")
+@Data
 public class Book {
     @Id
-    private String id;
+    private final String isbn;
     private final String name;
     private final String author;
-    @JsonIgnore
-    private final String isbn;
     private final String description;
     private final String genre;
     private double cost;
@@ -29,72 +25,23 @@ public class Book {
     private final int sold;
     @JsonIgnore
     private final String publisher;
-
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public double getRatings() {
-        return rating;
-    }
-
-    public int getSold() {
-        return sold;
-    }
-
-    public double getCost() {
-        return cost;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
+    private final int yearPublished;
 
     /**
-     * Default constructor for mapping MongoDB objects
+     * Default constructor for mapping MongoDB objects.
      *
-     * @param id          - takes in unique id number of the Book
-     * @param name        - takes in the name of the book
-     * @param author      - takes in the author's name of the book
-     * @param isbn        - takes in the 9 letter ISBN of the book
-     * @param description - takes in the books description
-     * @param genre       - takes in the genre of the book
-     * @param cost        - takes in the cost of the book
-     * @param rating      - takes in the rating of the book
-     * @param sold        - takes in the amount of copies sold
-     * @param publisher   - takes in the name of the publisher for this book
+     * @param name          - takes in the name of the book
+     * @param author        - takes in the author's name of the book
+     * @param isbn          - takes in the 9 letter ISBN of the book
+     * @param description   - takes in the book's description
+     * @param genre         - takes in the genre of the book
+     * @param cost          - takes in the cost of the book
+     * @param rating        - takes in the rating of the book
+     * @param sold          - takes in the amount of copies sold
+     * @param publisher     - takes in the name of the publisher for this book
+     * @param yearPublished - takes in the year that book was published
      */
-    public Book(String id, String name, String author, String isbn
-            , String description, String genre, Double cost, Double rating, Integer sold, String publisher) {
-        this.id = id;
+    public Book(String name, String author, String isbn, String description, String genre, Double cost, Double rating, Integer sold, String publisher, Integer yearPublished) {
         this.name = name;
         this.author = author;
         this.isbn = isbn;
@@ -104,5 +51,6 @@ public class Book {
         this.rating = rating == null ? 0 : rating;
         this.sold = sold == null ? 0 : sold;
         this.publisher = publisher;
+        this.yearPublished = yearPublished;
     }
 }
