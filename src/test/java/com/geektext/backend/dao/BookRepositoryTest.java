@@ -1,5 +1,6 @@
 package com.geektext.backend.dao;
 
+import com.geektext.backend.models.Book;
 import org.junit.jupiter.api.Test;
 
 
