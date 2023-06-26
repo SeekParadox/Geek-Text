@@ -1,7 +1,9 @@
 package com.geektext.backend.security;
 
 
-import com.geektext.backend.MyJsonParser;
+import com.geektext.backend.UserDataParser;
+import com.geektext.backend.dao.UserRepository;
+import com.geektext.backend.models.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,22 +22,11 @@ public class CreateUserService {
         return repository.existsByUsernameIgnoreCase(username);
     }
 
-    public void createUser(MyJsonParser object) throws Exception {
+    public void createUser(UserDataParser object) throws Exception {
         if (findUserByUsername(object.getUsername()))
             throw new Exception("Username Taken");
 
-        UserEntity user = new UserEntity();
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(16);
-        String encodedPassword = passwordEncoder.encode(object.getPassword());
-
-        user.setUsername(object.getUsername());
-        user.setPassword(encodedPassword);
-        user.setName(object.getName());
-        user.setEmail(object.getEmail());
-        user.setAddress(object.getAddress());
-        user.setHomeAddress(object.getHomeaddress());
-        user.setEnabled(true);
-        user.setUserRoles(List.of("user"));
+        UserEntity user = new UserEntity(object);
 
         repository.save(user);
     }
