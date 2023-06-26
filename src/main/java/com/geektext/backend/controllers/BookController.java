@@ -1,7 +1,7 @@
 package com.geektext.backend.controllers;
 
 
-import com.geektext.backend.models.Book;
+import com.geektext.backend.dao.Book;
 import com.geektext.backend.dao.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

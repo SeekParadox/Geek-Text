@@ -1,6 +1,5 @@
-package com.geektext.backend.models;
+package com.geektext.backend.security;
 
-import com.geektext.backend.UserDataParser;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -12,7 +11,9 @@ import java.util.*;
 
 @Document(collection = "users")
 public class UserEntity implements UserDetails {
-    @Id private String username;
+
+    @Id private  String id;
+    private String username;
     private String password;
 
     private String name;
@@ -33,22 +34,12 @@ public class UserEntity implements UserDetails {
 
     }
 
-    public UserEntity(String username, String password, boolean enabled, List<String> userRoles) {
+    public UserEntity(String id, String username, String password, boolean enabled, List<String> userRoles) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.enabled = enabled;
         this.userRoles = userRoles;
-    }
-
-    public UserEntity(UserDataParser userData) {
-        this.username = userData.getUsername();
-        this.password = String.valueOf(userData.getPassword().hashCode());
-        this.name = userData.getName();
-        this.email = userData.getEmail();
-        this.address = userData.getAddress();
-        this.homeAddress = userData.getHomeaddress();
-        this.enabled = true;
-        this.setUserRoles(List.of("user"));
     }
 
 
@@ -115,6 +106,14 @@ public class UserEntity implements UserDetails {
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setUsername(String username) {
