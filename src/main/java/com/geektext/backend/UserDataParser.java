@@ -1,10 +1,8 @@
 package com.geektext.backend;
 
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 
-public class MyJsonParser {
+public class UserDataParser {
 
     private String username;
     private String password;
