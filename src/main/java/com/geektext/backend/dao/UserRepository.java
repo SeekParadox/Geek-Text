@@ -1,5 +1,6 @@
-package com.geektext.backend.security;
+package com.geektext.backend.dao;
 
+import com.geektext.backend.models.UserEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
