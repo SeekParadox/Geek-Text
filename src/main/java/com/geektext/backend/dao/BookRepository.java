@@ -1,8 +1,8 @@
 package com.geektext.backend.dao;
 
+import com.geektext.backend.models.Book;
 import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
