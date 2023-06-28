@@ -1,6 +1,6 @@
 package com.geektext.backend.controllers;
 
-import com.geektext.backend.dao.Book;
+import com.geektext.backend.models.Book;
 import com.geektext.backend.dao.BookRepository;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;

@@ -1,4 +1,4 @@
-package com.geektext.backend.dao;
+package com.geektext.backend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mongodb.lang.Nullable;
