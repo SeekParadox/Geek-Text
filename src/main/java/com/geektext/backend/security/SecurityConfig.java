@@ -26,48 +26,9 @@ import java.util.*;
 @EnableWebSecurity
 public class SecurityConfig {
 
-
-    @Autowired
-    CustomUserDetailsService customUserDetailsService;
-    @Bean
-    BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(16);
-    }
-
-    @Bean
-    CustomUserDetailsService customUserDetailsService() {
-        return this.customUserDetailsService;
-    }
-
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(customUserDetailsService());
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider;
-    }
-
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.httpBasic().disable().csrf().disable().authorizeHttpRequests().anyRequest().permitAll().and().logout().disable();
         return http.build();
-    }
-
-    @Service
-    static class CustomUserDetailsService implements UserDetailsService {
-        @Autowired
-        UserRepository repository;
-
-        @Override
-        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-            List<UserEntity> users = repository.findAllByUsername(username);
-            if (users.isEmpty()) throw new UsernameNotFoundException("Username not found");
-
-            UserEntity matchedUser = users.get(0);
-            Set<GrantedAuthority> grantedAuthorities = new HashSet<>(matchedUser
-                    .getAuthorities());
-
-            return new User(matchedUser.getUsername(), matchedUser.getPassword(), grantedAuthorities);
-        }
     }
 }
