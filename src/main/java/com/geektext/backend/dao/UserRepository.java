@@ -13,5 +13,7 @@ public interface UserRepository extends MongoRepository<UserEntity, String> {
 
     boolean existsByUsernameIgnoreCase(String username);
 
+    UserEntity findByUsername(String username);
+
 
 }
