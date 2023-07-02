@@ -1,13 +1,10 @@
 package com.geektext.backend.security;
 
 
-import com.geektext.backend.UserDataParser;
 import com.geektext.backend.dao.UserRepository;
 import com.geektext.backend.models.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class CreateUserService {
@@ -22,12 +19,10 @@ public class CreateUserService {
         return repository.existsByUsernameIgnoreCase(username);
     }
 
-    public void createUser(UserDataParser object) throws Exception {
+    public void createUser(UserEntity object) throws Exception {
         if (findUserByUsername(object.getUsername()))
             throw new Exception("Username Taken");
 
-        UserEntity user = new UserEntity(object);
-
-        repository.save(user);
+        repository.save(object);
     }
 }
