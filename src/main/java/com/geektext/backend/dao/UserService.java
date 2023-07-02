@@ -1,12 +1,10 @@
 package com.geektext.backend.dao;
 
 
-import com.geektext.backend.UserDataParser;
+import com.geektext.backend.models.CreditCard;
 import com.geektext.backend.models.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserService {
@@ -17,19 +15,47 @@ public class UserService {
     public UserService(UserRepository repository)  {
         this.repository = repository;
     }
-    public boolean findUserByUsername(String username) {
+
+    public boolean doesUserExist(String username) {
         return repository.existsByUsernameIgnoreCase(username);
     }
 
-    public void createUser(UserDataParser userData) throws Exception {
-        if (findUserByUsername(userData.getUsername()))
+    public void createUser(UserEntity user) throws Exception {
+        if (repository.existsByUsernameIgnoreCase(user.getUsername()))
             throw new Exception("Username Taken");
 
-        UserEntity user = new UserEntity(userData);
         repository.save(user);
     }
 
-    public List<UserEntity> findAllUsers(String username) {
-        return repository.findAllByUsername(username);
+    public UserEntity getUser(String username) {
+        return repository.findByUsername(username);
+    }
+
+    public UserEntity updateUser(String username, UserEntity userEntity) {
+        UserEntity user = repository.findByUsername(username);
+
+        if (userEntity.getName() == null || !userEntity.getName().isEmpty()) {
+            user.setName(userEntity.getName());
+        }
+
+        if (userEntity.getPassword() == null || !userEntity.getPassword().isEmpty()) {
+            user.setPassword(userEntity.getPassword());
+        }
+
+        if (userEntity.getAddress() == null || !userEntity.getAddress().isEmpty()) {
+            user.setAddress(userEntity.getAddress());
+        }
+
+        if (userEntity.getHomeAddress() == null || !userEntity.getHomeAddress().isEmpty()) {
+            user.setHomeAddress(userEntity.getHomeAddress());
+        }
+
+        return repository.save(user);
+    }
+
+    public void addCreditCard(String username, CreditCard creditCard) {
+        UserEntity user = repository.findByUsername(username);
+        user.setCreditCard(creditCard);
+        repository.save(user);
     }
 }
