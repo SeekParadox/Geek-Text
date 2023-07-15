@@ -57,9 +57,9 @@ class BookRepositoryTest {
         List<Book> bookList4 = bookRepository.findBooksByRatingGreaterThanEqual(100);
 
         //expected
-        for (Book book : bookList) assertTrue(book.getRatings() >= 3);
-        for (Book book : bookList2) assertTrue(book.getRatings() >= 2);
-        for (Book book : bookList3) assertTrue(book.getRatings() >= 1);
+        for (Book book : bookList) assertTrue(book.getRating() >= 3);
+        for (Book book : bookList2) assertTrue(book.getRating() >= 2);
+        for (Book book : bookList3) assertTrue(book.getRating() >= 1);
         assertTrue(bookList4.isEmpty());
     }
 

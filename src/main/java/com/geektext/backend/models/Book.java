@@ -1,7 +1,10 @@
 package com.geektext.backend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mongodb.lang.Nullable;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -30,6 +33,9 @@ public class Book {
     @JsonIgnore
     private final String publisher;
 
+    private Map<String, Rating> ratings; // Map to store ratings by user ID
+    private Map<String, Comment> comments; // Map to store comments by user ID
+
     public String getId() {
         return id;
     }
@@ -54,10 +60,6 @@ public class Book {
         return genre;
     }
 
-    public double getRatings() {
-        return rating;
-    }
-
     public int getSold() {
         return sold;
     }
@@ -77,6 +79,23 @@ public class Book {
     public void setCost(double cost) {
         this.cost = cost;
     }
+
+    public Map<String, Rating> getRatings() {
+        if (ratings == null) {
+            ratings = new HashMap<>();
+        }
+        return ratings;
+    }
+
+
+    public Map<String, Comment> getComments() {
+        if (comments == null) {
+            comments = new HashMap<>();
+        }
+        return comments;
+    }
+
+
 
     /**
      * Default constructor for mapping MongoDB objects
@@ -104,5 +123,7 @@ public class Book {
         this.rating = rating == null ? 0 : rating;
         this.sold = sold == null ? 0 : sold;
         this.publisher = publisher;
+         this.ratings = new HashMap<>();
+        this.comments = new HashMap<>();
     }
 }
