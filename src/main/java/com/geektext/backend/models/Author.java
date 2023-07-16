@@ -1,5 +1,6 @@
-package com.geektext.backend.dao.models;
+package com.geektext.backend.models;
 
+import com.geektext.backend.models.Book;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;

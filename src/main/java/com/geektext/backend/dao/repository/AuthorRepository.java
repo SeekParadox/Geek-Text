@@ -1,6 +1,6 @@
 package com.geektext.backend.dao.repository;
 
-import com.geektext.backend.dao.models.Author;
+import com.geektext.backend.models.Author;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

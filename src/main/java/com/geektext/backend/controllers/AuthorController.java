@@ -1,7 +1,7 @@
 package com.geektext.backend.controllers;
 
-import com.geektext.backend.dao.models.Author;
-import com.geektext.backend.dao.models.Book;
+import com.geektext.backend.models.Author;
+import com.geektext.backend.models.Book;
 import com.geektext.backend.dao.repository.AuthorRepository;
 import com.geektext.backend.dao.repository.BookRepository;
 import jakarta.validation.Valid;

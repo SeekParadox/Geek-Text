@@ -1,7 +1,10 @@
 package com.geektext.backend.dao;
 
-import com.geektext.backend.dao.models.Book;
+<<<<<<< HEAD
+import com.geektext.backend.models.Book;
 import com.geektext.backend.dao.repository.BookRepository;
+=======
+>>>>>>> 4495905ec67d049c5712be6c7bb5ab6f571a185b
 import org.junit.jupiter.api.Test;
 
 
