@@ -1,6 +1,7 @@
 package com.geektext.backend.dao;
 
 
+import com.geektext.backend.dao.repository.UserRepository;
 import com.geektext.backend.models.CreditCard;
 import com.geektext.backend.models.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
