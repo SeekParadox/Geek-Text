@@ -1,4 +1,4 @@
-package com.geektext.backend.dao;
+package com.geektext.backend.dao.repository;
 
 import com.geektext.backend.models.UserEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;

@@ -2,36 +2,34 @@ package com.geektext.backend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.*;
+import lombok.Data;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- * This class is an Object Relation Mapping for a MongoDB documents
- *
- * @author Michael Waller
- * @version 1.0.0
- */
+import java.math.BigDecimal;
 
+/**
+ * This class is an Object Relation Mapping for a MongoDB document
+ * Represents a book entity.
+ */
 @Document("books")
+@Data
 public class Book {
+    @Pattern(regexp = "\\d{13}", message = "ISBN must be exactly 13 digits")
+    @NotEmpty(message = "ISBN must not be empty")
     @Id
-    private String id;
-    private final String name;
-    private final String author;
-    @JsonIgnore
+    @Indexed(unique = true)
     private final String isbn;
-    private final String description;
-    private final String genre;
-    private double cost;
-    @JsonIgnore
-    private final double rating;
-    @JsonIgnore
-    private final int sold;
-    @JsonIgnore
-    private final String publisher;
+
 
     private Map<String, Rating> ratings; // Map to store ratings by user ID
     private Map<String, Comment> comments; // Map to store comments by user ID
@@ -40,45 +38,45 @@ public class Book {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
+    @Size(max = 50)
+    @NotEmpty(message = "Name must not be empty")
+    private final String name;
 
-    public String getAuthor() {
-        return author;
-    }
 
-    public String getIsbn() {
-        return isbn;
-    }
+    @NotEmpty(message = "Author ID must not be empty")
+    private final String authorId;
 
-    public String getDescription() {
-        return description;
-    }
+    @NotEmpty(message = "Description must not be empty")
+    private final String description;
 
-    public String getGenre() {
-        return genre;
-    }
+    @Size(max = 50)
+    @NotEmpty(message = "Genre must not be empty")
+    private final String genre;
+
+    @PositiveOrZero
+    private double cost;
+
 
     public int getSold() {
         return sold;
     }
 
-    public double getCost() {
-        return cost;
-    }
+    @DecimalMin(value = "0.0", inclusive = false)
+    private final double rating;
 
-    public double getRating() {
-        return rating;
-    }
+    @NotNull(message = "field should not be null")
+    @Min(0)
+    private final Integer sold;
 
-    public String getPublisher() {
-        return publisher;
-    }
 
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
+    @NotEmpty
+    private final String publisher;
+
+    @NotNull
+    @Min(1900)
+    private final Integer yearPublished;
+
+
 
     public Map<String, Rating> getRatings() {
         if (ratings == null) {
@@ -98,32 +96,34 @@ public class Book {
 
 
     /**
-     * Default constructor for mapping MongoDB objects
+     * Default constructor for mapping MongoDB objects.
      *
-     * @param id          - takes in unique id number of the Book
-     * @param name        - takes in the name of the book
-     * @param author      - takes in the author's name of the book
-     * @param isbn        - takes in the 9 letter ISBN of the book
-     * @param description - takes in the books description
-     * @param genre       - takes in the genre of the book
-     * @param cost        - takes in the cost of the book
-     * @param rating      - takes in the rating of the book
-     * @param sold        - takes in the amount of copies sold
-     * @param publisher   - takes in the name of the publisher for this book
+     * @param name          - takes in the name of the book
+     * @param authorId      - takes in the authors ID
+     * @param isbn          - takes in the 9 letter ISBN of the book
+     * @param description   - takes in the book's description
+     * @param genre         - takes in the genre of the book
+     * @param cost          - takes in the cost of the book
+     * @param rating        - takes in the rating of the book
+     * @param sold          - takes in the amount of copies sold
+     * @param publisher     - takes in the name of the publisher for this book
+     * @param yearPublished - takes in the year that book was published
      */
-    public Book(String id, String name, String author, String isbn
-            , String description, String genre, Double cost, Double rating, Integer sold, String publisher) {
-        this.id = id;
+    public Book(String name, String authorId, String isbn, String description, String genre, double cost, Double rating, Integer sold, String publisher, Integer yearPublished) {
         this.name = name;
-        this.author = author;
+        this.authorId = authorId;
         this.isbn = isbn;
         this.description = description;
         this.genre = genre;
-        this.cost = cost == null ? 0 : cost;
+        this.cost = cost;
         this.rating = rating == null ? 0 : rating;
-        this.sold = sold == null ? 0 : sold;
+        this.sold = sold;
         this.publisher = publisher;
+
          this.ratings = new HashMap<>();
         this.comments = new HashMap<>();
+
+        this.yearPublished = yearPublished;
+
     }
 }
