@@ -1,9 +1,16 @@
 package com.geektext.backend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+import java.util.HashMap;
+import java.util.Map;
+
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.*;
 import lombok.Data;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -23,9 +30,18 @@ public class Book {
     @Indexed(unique = true)
     private final String isbn;
 
+
+    private Map<String, Rating> ratings; // Map to store ratings by user ID
+    private Map<String, Comment> comments; // Map to store comments by user ID
+
+    public String getId() {
+        return id;
+    }
+
     @Size(max = 50)
     @NotEmpty(message = "Name must not be empty")
     private final String name;
+
 
     @NotEmpty(message = "Author ID must not be empty")
     private final String authorId;
@@ -40,6 +56,11 @@ public class Book {
     @PositiveOrZero
     private double cost;
 
+
+    public int getSold() {
+        return sold;
+    }
+
     @DecimalMin(value = "0.0", inclusive = false)
     private final double rating;
 
@@ -47,12 +68,30 @@ public class Book {
     @Min(0)
     private final Integer sold;
 
+
     @NotEmpty
     private final String publisher;
 
     @NotNull
     @Min(1900)
     private final Integer yearPublished;
+
+
+
+    public Map<String, Rating> getRatings() {
+        if (ratings == null) {
+            ratings = new HashMap<>();
+        }
+        return ratings;
+    }
+
+
+    public Map<String, Comment> getComments() {
+        if (comments == null) {
+            comments = new HashMap<>();
+        }
+        return comments;
+    }
 
 
 
@@ -80,6 +119,11 @@ public class Book {
         this.rating = rating == null ? 0 : rating;
         this.sold = sold;
         this.publisher = publisher;
+
+         this.ratings = new HashMap<>();
+        this.comments = new HashMap<>();
+
         this.yearPublished = yearPublished;
+
     }
 }
