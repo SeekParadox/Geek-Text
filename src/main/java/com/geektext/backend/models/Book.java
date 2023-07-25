@@ -34,10 +34,6 @@ public class Book {
     private Map<String, Rating> ratings; // Map to store ratings by user ID
     private Map<String, Comment> comments; // Map to store comments by user ID
 
-    public String getId() {
-        return id;
-    }
-
     @Size(max = 50)
     @NotEmpty(message = "Name must not be empty")
     private final String name;

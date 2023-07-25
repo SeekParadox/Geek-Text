@@ -1,7 +1,7 @@
 package com.geektext.backend.service;
 
-import com.geektext.backend.dao.Book;
-import com.geektext.backend.dao.BookRepository;
+import com.geektext.backend.dao.repository.BookRepository;
+import com.geektext.backend.models.Book;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
@@ -91,7 +91,7 @@ public class ShoppingCartService implements IShoppingCartService {
     public double totalPrice() {
         return shoppingCart.entrySet().stream()
                 .map(k -> bookRepository.findById(k.getKey()).get().getCost() * k.getValue())
-                .reduce((aDouble, aDouble2) -> aDouble + aDouble2)
+                .reduce(Double::sum)
                 .orElse(0D);
     }
 

@@ -1,6 +1,7 @@
 package com.geektext.backend.service;
 
-import com.geektext.backend.dao.BookRepository;
+import com.geektext.backend.dao.repository.BookRepository;
+import com.geektext.backend.dao.repository.BookRepository;
 import com.geektext.backend.models.Book;
 
 import java.util.Optional;
