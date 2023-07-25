@@ -1,8 +1,7 @@
 package com.geektext.backend.controllers;
 
-
-import com.geektext.backend.dao.Book;
-import com.geektext.backend.dao.BookRepository;
+import com.geektext.backend.dao.repository.BookRepository;
+import com.geektext.backend.models.Book;
 import com.geektext.backend.service.ShoppingCartService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

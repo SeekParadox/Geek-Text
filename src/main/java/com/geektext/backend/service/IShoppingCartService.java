@@ -1,6 +1,6 @@
 package com.geektext.backend.service;
 
-import com.geektext.backend.dao.Book;
+import com.geektext.backend.models.Book;
 
 import java.util.Map;
 

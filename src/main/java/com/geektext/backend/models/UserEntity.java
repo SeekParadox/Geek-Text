@@ -26,9 +26,13 @@ public class UserEntity {
 
     }
 
-    public UserEntity(String username, String password, boolean enabled, List<String> userRoles, CreditCard creditCard) {
+    public UserEntity(String username, String password, String name, String email, List<String> address, List<String> homeAddress, CreditCard creditCard) {
         this.username = username;
         this.password = password;
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.homeAddress = homeAddress;
         this.creditCard = creditCard;
     }
 
