@@ -1,4 +1,4 @@
-package com.geektext.backend.dao;
+package com.geektext.backend.dao.repository;
 
 import com.geektext.backend.models.Book;
 import org.springframework.data.mongodb.repository.Aggregation;
@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Repository
 public interface BookRepository extends MongoRepository<Book, String> {
-
+    List<Book> findAll();
     /**
      * Returns a list of all books with the given name
      * @param name - name of the book(s)
@@ -53,4 +53,13 @@ public interface BookRepository extends MongoRepository<Book, String> {
      */
     List<Book> findAllByPublisherIgnoreCase(String name);
 
+    /**
+     * Returns a book by isbn
+     */
+    Book findByIsbn(String isbn);
+
+    /**
+     * Returns books by an author
+     */
+    List<Book> findByAuthorId(String authorId);
 }

@@ -1,7 +1,7 @@
 package com.geektext.backend.controllers;
 
 import com.geektext.backend.models.CreditCard;
-import com.geektext.backend.dao.UserService;;
+import com.geektext.backend.dao.UserService;
 import com.geektext.backend.models.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

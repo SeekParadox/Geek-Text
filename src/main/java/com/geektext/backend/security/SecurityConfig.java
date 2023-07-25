@@ -1,7 +1,7 @@
 package com.geektext.backend.security;
 
 
-import com.geektext.backend.dao.UserRepository;
+import com.geektext.backend.dao.repository.UserRepository;
 import com.geektext.backend.models.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
