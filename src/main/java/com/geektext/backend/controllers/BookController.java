@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("api/books")
+@RequestMapping("api/book")
 public class BookController {
 
     private final BookRepository books;
@@ -52,7 +52,7 @@ public class BookController {
     /**
      * This view displays the top 10 sold books
      */
-    @GetMapping(path = "findbytopsellers")
+    @GetMapping(path = "topsellers")
     public List<Book> findByTopSeller() {
         return books.findTop10Sellers();
     }
@@ -81,7 +81,7 @@ public class BookController {
      * @param publisher - name of the publisher to discount books
      */
     @ResponseBody
-    @PutMapping(path = "updatebypublisher", params = {"Discount percent", "Publisher"})
+    @PutMapping(path = "publisher", params = {"Discount percent", "Publisher"})
     public String updateByPublisher(@RequestParam("Discount percent") String percent
             , @RequestParam("Publisher") String publisher) {
 
