@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * @param /authors - book repository via spring bean dependency injection
  */
 @RestController
-@RequestMapping("api/authors")
+@RequestMapping("api/author")
 public class AuthorController {
 
     @Autowired
